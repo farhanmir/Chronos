@@ -132,6 +132,11 @@ export function HeroClient({ initialDownloadCount }: HeroClientProps) {
                <span className="group-hover:translate-x-0.5 transition-transform">→</span>
              </a>
           </div>
+          
+          {/* Download Counter */}
+          <p className="text-center text-gray-500 text-sm mt-4 font-mono">
+            {initialDownloadCount.toLocaleString()} downloads
+          </p>
         </div>
 
         {/* Links */}

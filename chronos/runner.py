@@ -14,7 +14,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.spinner import Spinner
 
-from chronos.config import COMPLETION_CODE
+from chronos.config import CHRONOS_TASK_COMPLETE_GEMINI
 from chronos.session import Session, SessionManager
 from chronos.transcript import TranscriptWriter
 
@@ -25,7 +25,7 @@ SYSTEM_PROMPT_APPEND = f"""
 
 CRITICAL INSTRUCTION: When you have fully completed ALL tasks and there is absolutely nothing left to do, you MUST output this exact completion marker on its own line:
 
-{COMPLETION_CODE}
+{CHRONOS_TASK_COMPLETE_GEMINI}
 
 Output this marker ONLY when you are 100% finished with everything requested.
 """
@@ -163,7 +163,7 @@ class ChronosRunner:
             process.wait()
             
             # Check for completion
-            if COMPLETION_CODE in self.output_buffer:
+            if CHRONOS_TASK_COMPLETE_GEMINI in self.output_buffer:
                 is_complete = True
             
         except Exception as e:
