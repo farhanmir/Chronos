@@ -303,24 +303,17 @@ class ChronosRunner:
                 # In YOLO mode, we might just loop? But we don't know *why* it exited.
                 # It might have just answered the question without the marker.
                 # Or it crashed.
-                console.print(
-                    "\n[yellow]Gemini exited without completion marker.[/yellow]"
-                )
-                
-                self.session.status = "uncertain"
-                self._save_session()
-                
-                if self.transcript:
-                    self.transcript.log_error("Exited without completion marker")
-                    self.transcript.log_session_end("uncertain")
-                
                 if self.yolo:
-                    console.print("[red]YOLO mode: Terminating as completion was not detected.[/red]")
-                    # For safety, even in YOLO, if we don't know what happened, we stop.
-                    # Unless we want to auto-retry? But retry with what prompt?
-                    # "Continue"?
-                    # Let's try to Auto-Continue ONCE if YOLO?
-                    # No, user didn't ask for auto-retry loop logic, just 'autonomous execution' which often implies skipping confirmations.
+                    # Autonomous continuation
+                    self.session.cycle_count += 1
+                    if self.session.cycle_count >= 50:
+                        console.print("[red]Max cycles (50) reached in YOLO mode. Stopping for safety.[/red]")
+                        return False
+                    
+                    console.print(f"\n[yellow]YOLO mode: Completion marker missing. Auto-continuing (Cycle {self.session.cycle_count}/50)...[/yellow]")
+                    original_prompt = "The previous turn did not result in a completion marker. Please continue your task until you are finished, then output the marker."
+                    is_continuation = True
+                    continue
                 
                 return False
         
