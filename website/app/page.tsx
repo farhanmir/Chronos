@@ -1,4 +1,4 @@
-import { getDisplayDownloadCount } from '../lib/redis'
+import { getDisplayDownloadCount } from '@/lib/redis'
 import { HeroClient } from './components/HeroClient'
 import { Features } from './components/Features'
 import { Footer } from './components/Footer'

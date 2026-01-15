@@ -1,4 +1,4 @@
-import { getRealDownloadCount, getDisplayDownloadCount } from '../../../../lib/redis'
+import { getRealDownloadCount, getDisplayDownloadCount } from '@/lib/redis'
 import { NextRequest, NextResponse } from 'next/server'
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET || 'tempo-admin-secret'
