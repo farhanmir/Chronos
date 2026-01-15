@@ -4,7 +4,7 @@
 $ErrorActionPreference = "Stop"
 
 # Configuration
-$Repo = "example/chronos"
+$Repo = "farhanmir/Chronos"
 $InstallDir = "$env:LOCALAPPDATA\Chronos"
 $BinaryName = "chronos.exe"
 

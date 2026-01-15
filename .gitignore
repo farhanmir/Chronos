@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -15,17 +16,37 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
 .env
 .venv
-env/
-venv/
-.tempo/
-create_history.sh
+pip-wheel-metadata/
 
-# Website
-website/.next/
-website/node_modules/
-website/.env.local
+# Chronos/Tempo Specific
+.chronos/
+.tempo/
+token_buckets.json
+transcript.json
+logs/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node.js / Next.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.next/
+out/
+.vercel

@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
-# Tempo Installer for macOS, Linux, and WSL
-# Usage: curl -fsSL https://raw.githubusercontent.com/tomalmog/tempo/main/install.sh | bash
+# Chronos Installer for macOS, Linux, and WSL
+# Usage: curl -fsSL https://raw.githubusercontent.com/farhanmir/Chronos/main/install.sh | bash
 
 set -e
 
 # Configuration
-REPO="tomalmog/tempo"
-INSTALL_DIR="${TEMPO_INSTALL_DIR:-$HOME/.local/bin}"
-BINARY_NAME="tempo"
-TRACKING_URL="https://tempo-eight-zeta.vercel.app/api/downloads/track"
+REPO="farhanmir/Chronos"
+INSTALL_DIR="${CHRONOS_INSTALL_DIR:-$HOME/.local/bin}"
+BINARY_NAME="chronos"
 
 # Colors
 RED='\033[0;31m'
@@ -20,8 +19,8 @@ NC='\033[0m' # No Color
 print_banner() {
     echo ""
     echo "  ╔════════════════════════════════════════╗"
-    echo "  ║           Tempo Installer              ║"
-    echo "  ║   Automated Claude Code Runner         ║"
+    echo "  ║           Chronos Installer            ║"
+    echo "  ║   Autonomous Gemini Code Runner        ║"
     echo "  ╚════════════════════════════════════════╝"
     echo ""
 }
@@ -82,15 +81,21 @@ get_latest_version() {
     info "Fetching latest version..."
     VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
     
+    # Fallback to hardcoded version if release not found (for initial install)
     if [ -z "$VERSION" ]; then
-        error "Failed to fetch latest version. Check your internet connection."
+        warn "Could not fetch latest release. Ensure you have created a release on GitHub."
+        return
     fi
     
     info "Latest version: $VERSION"
 }
 
 download_and_install() {
-    local url="https://github.com/${REPO}/releases/download/${VERSION}/tempo-${PLATFORM}"
+    if [ -z "$VERSION" ]; then
+         error "Cannot download without version tag. Create a release first."
+    fi
+
+    local url="https://github.com/${REPO}/releases/download/${VERSION}/chronos-${PLATFORM}"
     
     info "Downloading from: $url"
     
@@ -140,7 +145,7 @@ setup_path() {
     
     if [ -n "$shell_config" ]; then
         echo "" >> "$shell_config"
-        echo "# Tempo" >> "$shell_config"
+        echo "# Chronos" >> "$shell_config"
         echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$shell_config"
         warn "Added $INSTALL_DIR to PATH in $shell_config"
         warn "Run 'source $shell_config' or restart your terminal"
@@ -150,24 +155,16 @@ setup_path() {
     fi
 }
 
-track_download() {
-    # Silently ping the tracking API (don't fail if it doesn't work)
-    curl -fsSL "${TRACKING_URL}?url=cli-install" > /dev/null 2>&1 || true
-}
-
 verify_installation() {
     if [ -x "$INSTALL_DIR/$BINARY_NAME" ]; then
-        # Track successful installation
-        track_download
-        
-        success "Tempo installed successfully!"
+        success "Chronos installed successfully!"
         echo ""
         echo "To get started:"
         echo "  1. Restart your terminal (or run: source ~/.zshrc)"
-        echo "  2. Run: tempo --help"
+        echo "  2. Run: chronos --help"
         echo ""
         echo "Example usage:"
-        echo "  tempo run \"Build a REST API with authentication\""
+        echo "  chronos run \"Build a REST API with authentication\" --yolo"
         echo ""
     else
         error "Installation verification failed"
@@ -178,9 +175,11 @@ main() {
     print_banner
     detect_platform
     get_latest_version
-    download_and_install
-    setup_path
-    verify_installation
+    if [ -n "$VERSION" ]; then
+        download_and_install
+        setup_path
+        verify_installation
+    fi
 }
 
 main

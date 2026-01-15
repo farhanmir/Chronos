@@ -10,7 +10,7 @@ echo   ========================================
 echo.
 
 REM Configuration
-set REPO=example/chronos
+set REPO=farhanmir/Chronos
 set INSTALL_DIR=%LOCALAPPDATA%\Chronos
 set BINARY_NAME=chronos.exe
 
