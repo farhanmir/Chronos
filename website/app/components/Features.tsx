@@ -20,7 +20,9 @@ export function Features() {
   ]
 
   return (
-    <section className="py-20 px-6 bg-[#0A0A0C] border-t border-white/5">
+    <section className="py-20 px-6 bg-gradient-to-b from-[#0A0A0C] to-[#111115] border-t border-white/5 relative overflow-hidden">
+      {/* Subtle glow effect */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-900/10 blur-[100px] rounded-full pointer-events-none"></div>
       <div className="max-w-[1000px] mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
