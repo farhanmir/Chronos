@@ -144,7 +144,8 @@ class ChronosRunner:
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
-                encoding='utf-8' # Ensure encoding is handled
+                encoding='utf-8',
+                shell=(os.name == 'nt') # Fix for Windows resolving .cmd/.ps1
             )
             
             # Process streaming output
@@ -157,7 +158,17 @@ class ChronosRunner:
                     continue
                 
                 # Print output directly
-                console.print(line, end="")
+                try:
+                    # Try rich first
+                    console.print(line, end="")
+                except:
+                    # Fallback to absolute basics
+                    try:
+                        sys.stdout.write(line)
+                        sys.stdout.flush()
+                    except:
+                        # Even if that fails, just continue so we don't crash the loop
+                        pass
                 self.output_buffer += line
             
             process.wait()
