@@ -14,7 +14,7 @@ export function Footer() {
           </a>
         </div>
         <div className="text-sm text-gray-700">
-          Open Source · Powered by Gemini
+          Open Source · Powered by Chronos
         </div>
       </div>
     </footer>

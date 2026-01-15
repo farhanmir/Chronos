@@ -14,8 +14,8 @@ export function Features() {
     },
     {
       icon: <Cpu className="w-6 h-6 text-cyan-400" />,
-      title: 'Gemini Native',
-      description: 'Built specifically for Google\'s Gemini models, leveraging their massive context window for complex refactoring.',
+      title: 'Built for Speed',
+      description: 'Leverages massive context windows for complex refactoring tasks without interruptions.',
     },
   ]
 

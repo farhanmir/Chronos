@@ -58,12 +58,12 @@ export function HeroClient({ initialDownloadCount }: HeroClientProps) {
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl text-indigo-200/80 mb-6 leading-relaxed font-light">
-          Autonomous <span className="text-white font-medium">Gemini Code</span> Runner
+          Autonomous <span className="text-white font-medium">Code</span> Runner
         </p>
 
         {/* Description */}
         <p className="text-base md:text-lg text-gray-400 mb-12 max-w-[600px] mx-auto leading-relaxed">
-          Break free from rate limits. Chronos uses a high-throughput Token Bucket algorithm to manage Gemini's API autonomously. Sleep while it codes.
+          Break free from rate limits. Chronos uses a high-throughput Token Bucket algorithm to manage API limits autonomously. Sleep while it codes.
         </p>
 
         {/* Terminal Window */}
@@ -123,7 +123,7 @@ export function HeroClient({ initialDownloadCount }: HeroClientProps) {
 
         {/* Stat */}
         <p className="text-xs text-gray-600 mt-12 font-mono">
-          v0.1.0 • Gemini 1.5 Pro • Token Bucket Enabled
+          v0.1.0 • High Throughput • Token Bucket Enabled
         </p>
       </div>
     </section>
