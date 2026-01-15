@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chronos-gemini"
+version = "0.1.0"
+description = "Autonomous Gemini Code runner with high-throughput token bucket rate limiting"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+    { name = "Chronos Contributors" }
+]
+keywords = ["gemini", "automation", "cli", "ai", "coding"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+]
+
+dependencies = [
+    "pexpect>=4.9.0",
+    "click>=8.1.0",
+    "python-dateutil>=2.8.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pyinstaller>=6.0.0",
+]
+
+[project.scripts]
+chronos = "chronos.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/example/chronos"
+Repository = "https://github.com/example/chronos"
+
+[tool.hatch.build.targets.wheel]
+packages = ["chronos"]
+
