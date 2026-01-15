@@ -50,7 +50,7 @@ export function HeroClient({ initialDownloadCount }: HeroClientProps) {
     <section className="relative flex flex-col items-center justify-center px-6 pt-24 pb-20 md:pt-32 md:pb-24 overflow-hidden min-h-[80vh]">
       {/* Dynamic Background */}
       <div className="absolute inset-0hero-gradient opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 opacity-20" style={{backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px'}} />
       
       <div className="max-w-[800px] w-full text-center relative z-10">
         {/* Logo */}

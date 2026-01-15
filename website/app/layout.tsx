@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   keywords: ['gemini', 'gemini code', 'automation', 'ai', 'coding', 'developer tools', 'chronos'],
   authors: [{ name: 'Chronos' }],
   icons: {
-    icon: '/iconlogo.png',
-    apple: '/iconlogo.png',
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
   openGraph: {
     title: 'Chronos - Autonomous Gemini Code Runner',
